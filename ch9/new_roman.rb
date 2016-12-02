@@ -1,6 +1,6 @@
 #Ch.9 (p.68): The program translates a number to new roman numerals - what we know as regular roman digits
 
-def old_roman_num (num)
+def new_roman_num (num)
   i = 0
   roman = ''
   spec_digits = [
@@ -21,8 +21,8 @@ def old_roman_num (num)
     elsif digit == 9
       roman = spec_digits[i][:nine] + roman
     else
-      big   = (num % 10) / 5
-      big == 0 ? small = (num % 10) : small = (num % 10) - 5
+      big   = (num % 10) / 5 # This is going to be 0 or 1 - depending on if there's a 5 in the digit.
+      big == 0 ? small = (num % 10) : small = (num % 10) - 5 #If there is a 5, I need to substract it to know how many 'ones' there are
       roman = (reg_digits[i][:big] * big) + (reg_digits[i][:small] * small) + roman
     end
     num /= 10
@@ -33,4 +33,4 @@ end
 
 puts "Please enter number between 1 and 3,000"
 user_num = gets.chomp.to_i
-puts "#{user_num} in old Roman Numerals would be #{old_roman_num(user_num)}"
+puts "#{user_num} in old Roman Numerals would be #{new_roman_num(user_num)}"
